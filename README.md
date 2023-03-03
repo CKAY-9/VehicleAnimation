@@ -1,2 +1,1 @@
-# VehicleAnimation
- School thing
+## Make sure you have Raylib if you want to compile 
