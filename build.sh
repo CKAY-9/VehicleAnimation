@@ -1,0 +1,1 @@
+g++ ./src/*.cpp `pkg-config --libs --cflags raylib` -std=c++11 -O2 -Wall -o ./build/VehicleAnimation.exe
