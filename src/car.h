@@ -1,5 +1,6 @@
 #include <vector>
 #include "raylib.h"
+#include <string>
 
 class Car 
 {
@@ -15,5 +16,9 @@ class Car
         Car(int x, int y, int speedX, int speedY, int windowWidth, int windowHeight, int* trailLength);
         void think();
         void render();
+        void drawTrails();
+        void drawCar();
+        void drawPos();
+        Vector2 carPos();
         ~Car();
 };

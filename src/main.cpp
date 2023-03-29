@@ -4,10 +4,20 @@
 #include <string>
 #include <vector>
 
+const int windowWidth = 800;
+const int windowHeight = 1000;
+
+void drawBackground(Texture2D mountains, Texture2D sun, Texture2D clouds) 
+{
+    DrawTexture(mountains, windowWidth/2 - mountains.width/2, windowHeight - mountains.height/2, WHITE);
+    DrawTexture(sun, 20, 20, RAYWHITE);
+    for (int i = 0; i < 10; i++) {
+        DrawTexture(clouds, (150 * i) - 60, -10, RAYWHITE);
+    }
+}
+
 int main(int argc, char const *argv[])
 {
-    int windowWidth = 800;
-    int windowHeight = 1000;
     int trailLength = 75;
 
     InitWindow(windowWidth, windowHeight, "Vehicle Animation - Cameron Armstrong");
@@ -15,9 +25,10 @@ int main(int argc, char const *argv[])
 
     // Initialize cars
     std::vector<Car*> cars;
-    for (int i = 0; i < 1; i++) 
+    int carCount = 50;
+    for (int i = 0; i < carCount; i++) 
     {
-        cars.push_back(new Car(0, (i + 1) * windowHeight / 2, i + 3, i + 2, windowWidth, windowHeight, &trailLength));
+        cars.push_back(new Car(0, (i + 1) * windowHeight / carCount + 1, i + 3, i + 2, windowWidth, windowHeight, &trailLength));
     }
 
     // Load Images for background
@@ -51,11 +62,7 @@ int main(int argc, char const *argv[])
         ClearBackground(RAYWHITE);
 
         // Background Elements
-        DrawTexture(mountainsTexture, windowWidth/2 - mountainsTexture.width/2, windowHeight - mountainsTexture.height/2, WHITE);
-        DrawTexture(sunTexture, 20, 20, RAYWHITE);
-        for (int i = 0; i < 10; i++) {
-            DrawTexture(cloudTexture, (150 * i) - 60, -10, RAYWHITE);
-        }
+        drawBackground(mountainsTexture, sunTexture, cloudTexture);
 
         // Car Logic
         for (Car* car : cars) 
